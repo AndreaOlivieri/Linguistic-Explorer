@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(:version => 20140505102705) do
     t.integer  "group_id"
     t.string   "name"
     t.integer  "depth"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.integer  "creator_id"
     t.text     "description"
   end
@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(:version => 20140505102705) do
   create_table "examples", :force => true do |t|
     t.integer  "ling_id"
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "group_id"
     t.integer  "creator_id"
   end
@@ -42,8 +42,8 @@ ActiveRecord::Schema.define(:version => 20140505102705) do
     t.integer  "lings_property_id"
     t.integer  "creator_id"
     t.integer  "group_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   add_index "examples_lings_properties", ["group_id"], :name => "index_examples_lings_properties_on_group_id"
@@ -52,8 +52,8 @@ ActiveRecord::Schema.define(:version => 20140505102705) do
     t.string   "title"
     t.boolean  "state",      :default => true
     t.integer  "position",   :default => 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   create_table "forums", :force => true do |t|
@@ -64,14 +64,14 @@ ActiveRecord::Schema.define(:version => 20140505102705) do
     t.integer  "posts_count",    :default => 0
     t.integer  "position",       :default => 0
     t.integer  "forum_group_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
   end
 
   create_table "groups", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                :null => false
+    t.datetime "updated_at",                                                :null => false
     t.string   "ling0_name",                   :default => "Ling"
     t.string   "ling1_name",                   :default => "Linglet"
     t.string   "property_name",                :default => "Property"
@@ -88,8 +88,8 @@ ActiveRecord::Schema.define(:version => 20140505102705) do
 
   create_table "lings", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "depth"
     t.integer  "parent_id"
     t.integer  "group_id"
@@ -102,8 +102,8 @@ ActiveRecord::Schema.define(:version => 20140505102705) do
     t.integer  "ling_id"
     t.integer  "property_id"
     t.string   "value"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.integer  "group_id"
     t.integer  "creator_id"
     t.string   "property_value"
@@ -112,16 +112,14 @@ ActiveRecord::Schema.define(:version => 20140505102705) do
 
   add_index "lings_properties", ["group_id"], :name => "index_lings_properties_on_group_id"
   add_index "lings_properties", ["ling_id", "property_id"], :name => "index_lings_properties_on_ling_id_and_property_id"
-  add_index "lings_properties", ["ling_id", "property_value"], :name => "i_prop_val", :length => {"ling_id"=>nil, "property_value"=>10}
   add_index "lings_properties", ["property_value"], :name => "index_lings_properties_on_property_value"
-  add_index "lings_properties", ["value"], :name => "index_lings_properties_on_value"
 
   create_table "memberships", :force => true do |t|
     t.integer  "member_id"
     t.integer  "group_id"
     t.string   "level"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "creator_id"
   end
 
@@ -139,14 +137,14 @@ ActiveRecord::Schema.define(:version => 20140505102705) do
     t.integer  "forum_id"
     t.integer  "topic_id"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "properties", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.integer  "group_id"
     t.integer  "category_id"
     t.integer  "creator_id"
@@ -171,8 +169,8 @@ ActiveRecord::Schema.define(:version => 20140505102705) do
     t.integer  "creator_id",                        :null => false
     t.integer  "group_id",                          :null => false
     t.text     "query"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.text     "result_groups", :limit => 16777215
   end
 
@@ -184,8 +182,8 @@ ActiveRecord::Schema.define(:version => 20140505102705) do
     t.integer  "storable_id"
     t.string   "storable_type"
     t.integer  "group_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   add_index "stored_values", ["group_id"], :name => "index_stored_values_on_group_id"
@@ -198,28 +196,27 @@ ActiveRecord::Schema.define(:version => 20140505102705) do
     t.integer  "posts_count"
     t.integer  "forum_id"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                               :default => "", :null => false
-    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
-    t.string   "password_salt",                       :default => "", :null => false
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
-    t.string   "remember_token"
+    t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                       :default => 0
+    t.integer  "sign_in_count",          :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.string   "name"
     t.string   "access_level"
-    t.integer  "topics_count",                        :default => 0
-    t.integer  "posts_count",                         :default => 0
+    t.integer  "topics_count",           :default => 0
+    t.integer  "posts_count",            :default => 0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

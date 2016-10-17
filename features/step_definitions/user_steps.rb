@@ -7,7 +7,7 @@ Given /^I am signed in as a ([^ ]+) of (.*)/ do |membership_level, group|
   email = "e@mail.com"
   level = (Membership::ADMIN == membership_level ? membership_level : Membership::MEMBER )
 
-  @user = create_user(:email => email, :password => password, :access_level => level)
+  @user = create_user(:email => email, :password => password)
   @group = Group.find_by_name(group) || FactoryGirl.create(:group, :name => group)
   Membership.create!(:member => @user, :group => @group, :level => level)
 
