@@ -54,7 +54,7 @@ class LingsController < GroupDataController
   def supported_set_values
     @ling = current_group.lings.find(params[:id])
 
-    is_authorized? :manage, @ling, true
+    is_authorized? :update, @ling, true
 
     @depth = @ling.depth
     @categories = current_group.categories.at_depth(@depth)
