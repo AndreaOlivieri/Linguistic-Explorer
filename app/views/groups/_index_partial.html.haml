@@ -11,9 +11,9 @@
     //%th Display style
     //%th MaxDepth
     %th{:rowspan => 2} Privacy
-    - if can_see? :update, @groups
+    - if can_see_header? [:update], @groups
       %th{:rowspan => 2} Actions
-    //- if can_see? :destroy, @groups
+    //- if can_see_header? [:destroy], @groups
     //  %th
   %tr
     %th Parent
