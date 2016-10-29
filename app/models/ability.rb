@@ -4,8 +4,8 @@ class Ability
   def initialize(user)
     group_member_data = [Example, LingsProperty, ExamplesLingsProperty]
     group_admin_data  = [Ling, Property, Category, Membership]
+    group_expert_data = [LingsProperty, ExamplesLingsProperty, Ling]
 
-    group_expert_data = [Ling, Example, LingsProperty, ExamplesLingsProperty]
     group_data = group_admin_data + group_member_data
 
     # ensure there is a user object in the not logged in case
@@ -29,8 +29,7 @@ class Ability
       # turn on group data reading for group members
       can     :read,   group_data,              :group_id => user.group_ids
       # Cannot scope to specific instances, but at least let experts only pass
-      can     :manage,  group_expert_data,       :group_id => user.is_expert_for_groups
-      can     :destroy, group_expert_data,       :group_id => user.is_expert_for_groups
+      can     :update,  group_expert_data,      :group_id => user.is_expert_for_groups
 
       # turn on all searches advanced features
       can :search, Search,        :group => { :privacy => Group::PUBLIC }
