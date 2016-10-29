@@ -133,7 +133,7 @@
         %th.col-md-2= current_group.property_name
         %th.col-md-2= current_group.lings_property_name
         %th.col-md= current_group.example_name.pluralize
-        - if can_see?(:manage, @ling)
+        - if can_see_any? [:update, :create, :destroy], @ling
           %th.col-md-2 Actions
       %tbody
         - @values.each do |value|
