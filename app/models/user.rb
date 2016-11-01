@@ -64,9 +64,8 @@ class User < ActiveRecord::Base
     # resource_ids_for_role :resource_expert, resource
     if ling && member_of?(group) && is_expert?(group)
 
-      # is thruthy if either is assigned to that resource or
-      # the resource has nobody set as expert for the moment
-      return group.membership_for(self).has_role?(:expert, ling) || has_no_expert(ling)
+      # is thruthy if either is assigned to that resource
+      return group.membership_for(self).has_role?(:expert, ling)
     end
 
   end
@@ -102,10 +101,6 @@ class User < ActiveRecord::Base
     # valid_resource = resource.is_a?(*valid_type) ? resource.get_valid_resource : false
     # [valid_resource, resource.is_a?(Group) ? resource : resource.group]
     [resource.get_valid_resource || false, resource.is_a?(Group) ? resource : resource.group]
-  end
-
-  def has_no_expert(resource)
-    resource.roles.empty?
   end
 
 end

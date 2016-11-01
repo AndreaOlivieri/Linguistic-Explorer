@@ -96,19 +96,16 @@ Feature: Expert member role management
     Then I should see "Ling" within "#edit-dropdown-menu"
     And I should see "Values" within "#edit-dropdown-menu"
 
-  Scenario: Scenario: An Afrikaans expert member can edit values for a ling that has no expert assigned in the First Group
+  Scenario: Scenario: An Afrikaans expert member can't edit ling, properties, examples/values for a ling that has no expert assigned in the First Group
     When I go to the group First Group
     Then I should not see "Plus" icon on the ling settings
     When I follow "Lings"
     Then I should not see "Plus" icon on the ling settings
     When I follow "German"
     Then I should not see "Plus" icon on the example actions
-    And I should see "Edit" icon on the ling property actions
+    And I should not see "Edit" icon on the ling property actions
     And I should not see "Trash" icon on the ling property actions
-    And I should see "Edit" icon on the edit menu
-    When I press "Edit" icon on the edit menu
-    Then I should see "Ling" within "#edit-dropdown-menu"
-    And I should see "Values" within "#edit-dropdown-menu"
+    And I should not see "Edit" icon on the edit menu
 
   Scenario: An Afrikaans expert member can't edit ling, properties, examples/values of Spanish in First Group
     When I go to the group First Group
