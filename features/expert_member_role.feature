@@ -77,45 +77,73 @@ Feature: Expert member role management
   # Scenarios using a group where the user is the Afrikans expert.
   # There are a total of two expert members in the group: one for Afrikaans and the other for Spanish ling
   # German and French don't have any experts
-  Scenario: An Afrikaans expert member can't edit and delete information of First Group
+  Scenario: An Afrikaans expert member can't edit or delete group information of First Group
     When I go to the group First Group
     Then I should not see "Edit" icon on the group settings
     And I should not see "Trash" icon on the group settings
 
-  Scenario: An Afrikaans expert member can only edit ling, properties, examples/values of Afrikaans in First Group
+  Scenario: An Afrikaans expert member can create a new ling in First Group with admin approval
     When I go to the group First Group
-    Then I should not see "Plus" icon on the ling settings
+    Then I should see "Plus" icon on the ling settings
+    # When I press "Plus" icon on the ling settings
+    # Then a pop up appears
     When I follow "Lings"
-    Then I should not see "Plus" icon on the ling settings
+    Then I should see "Plus" icon on the ling settings
+    # When I press "Plus" icon on the ling settings
+    # Then a pop up appears
+
+  Scenario: An expert member can edit values of his own ling, the deletion of a ling need Admin approval
+    When I go to the group First Group
+    When I follow "Lings"
+    Then I should see "Edit" icon on the Afrikaans actions
+    And I should see "Trash" icon on the Afrikaans actions
+    And I should not see "Edit" icon on the German actions
+    And I should not see "Trash" icon on the German actions
+    And I should not see "Edit" icon on the Spanish actions
+    And I should not see "Trash" icon on the Spanish actions
+    And I should not see "Edit" icon on the French actions
+    And I should not see "Trash" icon on the French actions
+    # When I press "Trash" icon on the Afrikaans actions
+    # Then a pop up appears
     When I follow "Afrikaans"
-    Then I should not see "Plus" icon on the example actions
-    And I should see "Edit" icon on the ling property actions
-    And I should not see "Trash" icon on the ling property actions
+    Then I should not see "Plus" icon on the Adjective Noun example actions
+    And I should see "Edit" icon on the Adjective Noun actions
+    And I should see "Trash" icon on the Adjective Noun actions
+    And I should see "Plus" icon on the Subject Object example actions
+    And I should see "Edit" icon on the Subject Object actions
+    And I should see "Trash" icon on the Subject Object actions
     And I should see "Edit" icon on the edit menu
+    # When I press "Trash" icon on Adjective Noun actions
+    # Then a pop up appears
     When I press "Edit" icon on the edit menu
     Then I should see "Ling" within "#edit-dropdown-menu"
     And I should see "Values" within "#edit-dropdown-menu"
 
-  Scenario: Scenario: An Afrikaans expert member can't edit ling, properties, examples/values for a ling that has no expert assigned in the First Group
+  Scenario: An expert member can do nothing for a ling that has no expert assigned in the First Group
     When I go to the group First Group
-    Then I should not see "Plus" icon on the ling settings
     When I follow "Lings"
-    Then I should not see "Plus" icon on the ling settings
     When I follow "German"
-    Then I should not see "Plus" icon on the example actions
-    And I should not see "Edit" icon on the ling property actions
-    And I should not see "Trash" icon on the ling property actions
+    Then I should not see "Plus" icon on the Adjective Noun actions
+    And I should not see "Edit" icon on the Adjective Noun actions
+    And I should not see "Trash" icon on the Adjective Noun actions
     And I should not see "Edit" icon on the edit menu
 
-  Scenario: An Afrikaans expert member can't edit ling, properties, examples/values of Spanish in First Group
+  Scenario: An expert member can do nothing for a ling that has another expert assigned in the First Group
     When I go to the group First Group
-    Then I should not see "Plus" icon on the ling settings
     When I follow "Lings"
-    Then I should not see "Plus" icon on the ling settings
     When I follow "Spanish"
-    Then I should not see "Plus" icon on the example actions
-    And I should not see "Edit" icon on the ling property actions
-    And I should not see "Trash" icon on the ling property actions
+    Then I should not see "Plus" icon on the Adjective Noun example actions
+    And I should not see "Edit" icon on the Adjective Noun actions
+    And I should not see "Trash" icon on the Adjective Noun actions
+    And I should not see "Plus" icon on the Subject Object example actions
+    And I should not see "Edit" icon on the Subject Object actions
+    And I should not see "Trash" icon on the Subject Object actions
+    And I should not see "Plus" icon on the Noun Adjective example actions
+    And I should not see "Edit" icon on the Noun Adjective actions
+    And I should not see "Trash" icon on the Noun Adjective actions
+    And I should not see "Plus" icon on the Object Subject example actions
+    And I should not see "Edit" icon on the Object Subject actions
+    And I should not see "Trash" icon on the Object Subject actions
     And I should not see "Edit" icon on the edit menu
 
   Scenario: An Afrikaans expert member can't edit all properties of First Group
@@ -123,33 +151,54 @@ Feature: Expert member role management
     Then I should not see "Plus" icon on the property settings
     When I follow "Properties"
     Then I should not see "Plus" icon on the property settings
-    And I should not see "Edit" icon on the table
-    And I should not see "Trash" icon on the table
+    And I should not see "Edit" icon on the Adjective Noun actions
+    And I should not see "Trash" icon on the Adjective Noun actions
+    And I should not see "Edit" icon on the Subject Object actions
+    And I should not see "Trash" icon on the Subject Object actions
+    And I should not see "Edit" icon on the Noun Adjective actions
+    And I should not see "Trash" icon on the Noun Adjective actions
+    And I should not see "Edit" icon on the Object Subject actions
+    And I should not see "Trash" icon on the Object Subject actions
 
-  Scenario: An Afrikaans expert member can't add, edit, delete a members of First Group
+  Scenario: An Afrikaans expert member can't manage the membership of First Group
     When I go to the group First Group
     Then I should not see "Plus" icon on the membership settings
     When I follow "Members"
     And I follow "All"
     Then I should not see "Plus" icon on the membership settings
-    Then I should not see "Edit" icon on the membership actions
-    Then I should not see "Trash" icon on the membership actions
+    Then I should not see "Edit" icon on the member1 actions
+    Then I should not see "Trash" icon on the member1 actions
 
   #Scenarios using a group there you are not member
-  Scenario: An Afrikaans expert member can't edit and delete information of Second Group
+  Scenario: An Afrikaans expert member can't edit or delete group information of Second Group
     When I go to the group Second Group
     Then I should not see "Edit" icon on the group settings
     And I should not see "Trash" icon on the group settings
 
-  Scenario: An Afrikaans expert member can do nothing of Japanese in Second Group
+  Scenario: An Afrikaans expert member can't create a new ling in Second Group
     When I go to the group Second Group
     Then I should not see "Plus" icon on the ling settings
     When I follow "Lings"
     Then I should not see "Plus" icon on the ling settings
+
+  Scenario: An Afrikaans expert member can't edit values for Japanese ling in Second Group
+    When I go to the group Second Group
+    And I follow "Lings"
+    Then I should not see "Edit" icon on the Japanese actions
+    And I should not see "Trash" icon on the Japanese actions
+    And I should not see "Edit" icon on the Chinese actions
+    And I should not see "Trash" icon on the Chinese actions
+    And I should not see "Edit" icon on the Italian actions
+    And I should not see "Trash" icon on the Italian actions
+    And I should not see "Edit" icon on the Irish actions
+    And I should not see "Trash" icon on the Irish actions
     When I follow "Japanese"
-    Then I should not see "Plus" icon on the example actions
-    And I should not see "Edit" icon on the ling property actions
-    And I should not see "Trash" icon on the ling property actions
+    Then I should not see "Plus" icon on the Adjective Noun example actions
+    And I should not see "Edit" icon on the Adjective Noun actions
+    And I should not see "Trash" icon on the Adjective Noun actions
+    And I should not see "Plus" icon on the Subject Object example actions
+    And I should not see "Edit" icon on the Subject Object actions
+    And I should not see "Trash" icon on the Subject Object actions
     And I should not see "Edit" icon on the edit menu
 
   Scenario: An Afrikaans expert member can't edit all properties of Second Group
@@ -157,14 +206,20 @@ Feature: Expert member role management
     Then I should not see "Plus" icon on the property settings
     When I follow "Properties"
     Then I should not see "Plus" icon on the property settings
-    And I should not see "Edit" icon on the table
-    And I should not see "Trash" icon on the table
+    And I should not see "Edit" icon on the Adjective Noun actions
+    And I should not see "Trash" icon on the Adjective Noun actions
+    And I should not see "Edit" icon on the Subject Object actions
+    And I should not see "Trash" icon on the Subject Object actions
+    And I should not see "Edit" icon on the Noun Adjective actions
+    And I should not see "Trash" icon on the Noun Adjective actions
+    And I should not see "Edit" icon on the Object Subject actions
+    And I should not see "Trash" icon on the Object Subject actions
 
-  Scenario: An Afrikaans expert member can't add, edit, delete a members of Second Group
+  Scenario: An Afrikaans expert member can't manage the membership of Second Group
     When I go to the group Second Group
     Then I should not see "Plus" icon on the membership settings
     When I follow "Members"
     And I follow "All"
     Then I should not see "Plus" icon on the membership settings
-    Then I should not see "Edit" icon on the membership actions
-    Then I should not see "Trash" icon on the membership actions
+    Then I should not see "Edit" icon on the member2 actions
+    Then I should not see "Trash" icon on the member2 actions

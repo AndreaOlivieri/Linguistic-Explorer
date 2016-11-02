@@ -94,6 +94,10 @@ class LingsProperty < ActiveRecord::Base
     property_value ? "#{property_value}" : ''
   end
 
+  def get_valid_resource
+    false
+  end
+
   private
 
   def association_depth_match

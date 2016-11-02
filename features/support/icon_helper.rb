@@ -30,16 +30,16 @@ module IconHelper
       "ling settings" => "#ling_settings",
       "property settings" => "#property_settings",
       "membership settings" => "#membership_settings",
-      "table" => "#pagination_table",
-      "edit menu" => "#edit-dropdown-menu",
-      "ling property actions" => ".ling_property_actions",
-      "example actions" => ".example_actions",
-      "membership actions" => ".membership_actions"
+      "edit menu" => "#edit-dropdown-menu"
     }
   end
 
   def get_icon_selector(selector)
-    icon_selector[selector] || selector
+    if selector.include? "actions"
+      "#"+selector.downcase.tr(" ", "_")
+    else
+      icon_selector[selector] || selector
+    end
   end
 
   def icon_button

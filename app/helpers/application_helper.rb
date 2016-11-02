@@ -127,7 +127,7 @@ module ApplicationHelper
 
   def can_see?(action, item)
     if user_signed_in?
-      can?(action, item) && current_user.is_expert_of?(item)
+      can?(action, item) && current_user.is_expert_to_perform?(item, action)
     else
       can?(action, item)
     end
@@ -190,6 +190,12 @@ module ApplicationHelper
   def group_membership_path_if_any
     membership = @group.membership_for(current_user)
     membership.present? ? group_membership_path(@group, membership) : group_memberships_path(@group)
+  end
+
+  def table_actions_id(name, specific_action="")
+    name = name.downcase.tr(" ", "_")
+    specific_action = "_#{specific_action.downcase.tr(" ", "_")}" if specific_action.present?
+    "#{name}#{specific_action}_actions"
   end
 
 end

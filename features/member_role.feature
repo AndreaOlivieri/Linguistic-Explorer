@@ -70,69 +70,111 @@ Feature: Member role management
     And I am signed in as a member of First Group
 
   #Scenarios using a group with you are a member
-  Scenario: A member can't edit and delete information of First Group
+  Scenario: A member can't edit or delete group information of First Group
     When I go to the group First Group
     Then I should not see "Edit" icon on the group settings
     And I should not see "Trash" icon on the group settings
 
-  Scenario: A member can't add, edit, delete lings of ling, properties, examples/values of Afrikaans in First Group
+  Scenario: A member can't create a new ling in First Group
     When I go to the group First Group
     Then I should not see "Plus" icon on the ling settings
     When I follow "Lings"
     Then I should not see "Plus" icon on the ling settings
+
+  Scenario: A member can't edit values for Afrikaans ling in First Group
+    When I go to the group First Group
+    And I follow "Lings"
+    Then I should not see "Edit" icon on the Afrikaans actions
+    And I should not see "Trash" icon on the Afrikaans actions
+    And I should not see "Edit" icon on the German actions
+    And I should not see "Trash" icon on the German actions
+    And I should not see "Edit" icon on the Spanish actions
+    And I should not see "Trash" icon on the Spanish actions
+    And I should not see "Edit" icon on the French actions
+    And I should not see "Trash" icon on the French actions
     When I follow "Afrikaans"
-    Then I should not see "Plus" icon on the example actions
-    And I should not see "Edit" icon on the ling property actions
-    And I should not see "Trash" icon on the ling property actions
+    Then I should not see "Plus" icon on the Adjective Noun example actions
+    And I should not see "Edit" icon on the Adjective Noun actions
+    And I should not see "Trash" icon on the Adjective Noun actions
+    And I should not see "Plus" icon on the Subject Object example actions
+    And I should not see "Edit" icon on the Subject Object actions
+    And I should not see "Trash" icon on the Subject Object actions
     And I should not see "Edit" icon on the edit menu
 
-  Scenario: A member can't add, delete, edit properties of First Group
+  Scenario: A member can't edit all properties of First Group
     When I go to the group First Group
     Then I should not see "Plus" icon on the property settings
     When I follow "Properties"
     Then I should not see "Plus" icon on the property settings
-    And I should not see "Edit" icon on the table
-    And I should not see "Trash" icon on the table
+    And I should not see "Edit" icon on the Adjective Noun actions
+    And I should not see "Trash" icon on the Adjective Noun actions
+    And I should not see "Edit" icon on the Subject Object actions
+    And I should not see "Trash" icon on the Subject Object actions
+    And I should not see "Edit" icon on the Noun Adjective actions
+    And I should not see "Trash" icon on the Noun Adjective actions
+    And I should not see "Edit" icon on the Object Subject actions
+    And I should not see "Trash" icon on the Object Subject actions
 
-  Scenario: A member can't add, edit, delete a members of First Group
+  Scenario: A member can't manage the membership of First Group
     When I go to the group First Group
     Then I should not see "Plus" icon on the membership settings
     When I follow "Members"
     And I follow "All"
     Then I should not see "Plus" icon on the membership settings
-    Then I should not see "Edit" icon on the membership actions
-    Then I should not see "Trash" icon on the membership actions
+    Then I should not see "Edit" icon on the member1 actions
+    Then I should not see "Trash" icon on the member1 actions
 
   #Scenarios using a group with you are not a member
-  Scenario: A member can't edit and delete information of Second Group
+  Scenario: A member can't edit or delete group information of Second Group
     When I go to the group Second Group
     Then I should not see "Edit" icon on the group settings
     And I should not see "Trash" icon on the group settings
 
-  Scenario: A member can't add, edit, delete lings of ling, properties, examples/values of Japanese in Second Group
+  Scenario: A member can't create a new ling in Second Group
     When I go to the group Second Group
     Then I should not see "Plus" icon on the ling settings
     When I follow "Lings"
     Then I should not see "Plus" icon on the ling settings
+
+  Scenario: A member can't edit values for Japanese ling in Second Group
+    When I go to the group Second Group
+    And I follow "Lings"
+    Then I should not see "Edit" icon on the Japanese actions
+    And I should not see "Trash" icon on the Japanese actions
+    And I should not see "Edit" icon on the Chinese actions
+    And I should not see "Trash" icon on the Chinese actions
+    And I should not see "Edit" icon on the Italian actions
+    And I should not see "Trash" icon on the Italian actions
+    And I should not see "Edit" icon on the Irish actions
+    And I should not see "Trash" icon on the Irish actions
     When I follow "Japanese"
-    Then I should not see "Plus" icon on the example actions
-    And I should not see "Edit" icon on the ling property actions
-    And I should not see "Trash" icon on the ling property actions
+    Then I should not see "Plus" icon on the Adjective Noun example actions
+    And I should not see "Edit" icon on the Adjective Noun actions
+    And I should not see "Trash" icon on the Adjective Noun actions
+    And I should not see "Plus" icon on the Subject Object example actions
+    And I should not see "Edit" icon on the Subject Object actions
+    And I should not see "Trash" icon on the Subject Object actions
     And I should not see "Edit" icon on the edit menu
 
-  Scenario: A member can't add, delete, edit properties of Second Group
+  Scenario: A member can't edit all properties of Second Group
     When I go to the group Second Group
     Then I should not see "Plus" icon on the property settings
     When I follow "Properties"
     Then I should not see "Plus" icon on the property settings
-    And I should not see "Edit" icon on the table
-    And I should not see "Trash" icon on the table
+    And I should not see "Edit" icon on the Adjective Noun actions
+    And I should not see "Trash" icon on the Adjective Noun actions
+    And I should not see "Edit" icon on the Subject Object actions
+    And I should not see "Trash" icon on the Subject Object actions
+    And I should not see "Edit" icon on the Noun Adjective actions
+    And I should not see "Trash" icon on the Noun Adjective actions
+    And I should not see "Edit" icon on the Object Subject actions
+    And I should not see "Trash" icon on the Object Subject actions
 
-  Scenario: A member can't add, edit, delete a members of Second Group
+  Scenario: A member can't manage the membership of Second Group
     When I go to the group Second Group
     Then I should not see "Plus" icon on the membership settings
     When I follow "Members"
     And I follow "All"
     Then I should not see "Plus" icon on the membership settings
-    Then I should not see "Edit" icon on the membership actions
-    Then I should not see "Trash" icon on the membership actions
+    Then I should not see "Edit" icon on the member2 actions
+    Then I should not see "Trash" icon on the member2 actions

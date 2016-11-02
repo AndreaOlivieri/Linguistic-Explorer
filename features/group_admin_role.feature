@@ -70,73 +70,120 @@ Feature: Group admin role management
     And I am signed in as a admin of First Group
 
   #Scenarios using a group that you are the admin
-  Scenario: A group admin can edit and delete information of First Group
+  Scenario: A group admin can edit or delete group information of First Group
     When I go to the group First Group
     Then I should see "Edit" icon on the group settings
     And I should see "Trash" icon on the group settings
 
-  Scenario: A group admin can add, edit, delete ling, properties, examples/values of Afrikaans in First Group
+  Scenario: A group admin can create a new ling in First Group
     When I go to the group First Group
     Then I should see "Plus" icon on the ling settings
     When I follow "Lings"
     Then I should see "Plus" icon on the ling settings
+
+  Scenario: A group admin can edit values for Afrikaans ling in First Group
+    When I go to the group First Group
+    And I follow "Lings"
+    Then I should see "Edit" icon on the Afrikaans actions
+    And I should see "Trash" icon on the Afrikaans actions
+    And I should see "Edit" icon on the German actions
+    And I should see "Trash" icon on the German actions
+    And I should see "Edit" icon on the Spanish actions
+    And I should see "Trash" icon on the Spanish actions
+    And I should see "Edit" icon on the French actions
+    And I should see "Trash" icon on the French actions
+    # When I press "Trash" icon on the French actions
+    # Then French ling has been deleted
     When I follow "Afrikaans"
-    Then I should see "Plus" icon on the example actions
-    And I should see "Edit" icon on the ling property actions
-    And I should see "Trash" icon on the ling property actions
+    # in this case the group admin can't see the plus because there is already an example
+    Then I should not see "Plus" icon on the Adjective Noun example actions
+    And I should see "Edit" icon on the Adjective Noun actions
+    And I should see "Trash" icon on the Adjective Noun actions
+    And I should see "Plus" icon on the Subject Object example actions
+    And I should see "Edit" icon on the Subject Object actions
+    And I should see "Trash" icon on the Subject Object actions
     And I should see "Edit" icon on the edit menu
+    # When I press "Trash" icon on Adjective Noun actions
+    # Then Adjective Noun actions has been deleted
     When I press "Edit" icon on the edit menu
     Then I should see "Ling" within "#edit-dropdown-menu"
     And I should see "Values" within "#edit-dropdown-menu"
 
-  Scenario: A group admin can add, delete, edit properties of First Group
+  Scenario: A group admin can edit all properties of First Group
     When I go to the group First Group
     Then I should see "Plus" icon on the property settings
     When I follow "Properties"
     Then I should see "Plus" icon on the property settings
-    And I should see "Edit" icon on the table
-    And I should see "Trash" icon on the table
+    And I should see "Edit" icon on the Adjective Noun actions
+    And I should see "Trash" icon on the Adjective Noun actions
+    And I should see "Edit" icon on the Subject Object actions
+    And I should see "Trash" icon on the Subject Object actions
+    And I should see "Edit" icon on the Noun Adjective actions
+    And I should see "Trash" icon on the Noun Adjective actions
+    And I should see "Edit" icon on the Object Subject actions
+    And I should see "Trash" icon on the Object Subject actions
 
-  Scenario: A group admin can add, edit, delete a members of First Group
+  Scenario: A group admin can manage the membership of First Group
     When I go to the group First Group
     Then I should see "Plus" icon on the membership settings
     When I follow "Members"
     And I follow "All"
     Then I should see "Plus" icon on the membership settings
-    Then I should see "Edit" icon on the membership actions
-    Then I should see "Trash" icon on the membership actions
+    Then I should see "Edit" icon on the member1 actions
+    Then I should see "Trash" icon on the member1 actions
 
 
   #Scenarios using a group that you are not member or admin
-  Scenario: A group admin can't edit and delete information of Second Group
+  Scenario: A group admin can't edit or delete group information of Second Group
     When I go to the group Second Group
     Then I should not see "Edit" icon on the group settings
     And I should not see "Trash" icon on the group settings
 
-  Scenario: A group admin can't add, edit, delete ling, properties, examples/values of Japanese in Second Group
+  Scenario: A group admin can't create a new ling in Second Group
     When I go to the group Second Group
     Then I should not see "Plus" icon on the ling settings
     When I follow "Lings"
     Then I should not see "Plus" icon on the ling settings
+
+  Scenario: A group admin can't edit values for Japanese ling in Second Group
+    When I go to the group Second Group
+    And I follow "Lings"
+    Then I should not see "Edit" icon on the Japanese actions
+    And I should not see "Trash" icon on the Japanese actions
+    And I should not see "Edit" icon on the Chinese actions
+    And I should not see "Trash" icon on the Chinese actions
+    And I should not see "Edit" icon on the Italian actions
+    And I should not see "Trash" icon on the Italian actions
+    And I should not see "Edit" icon on the Irish actions
+    And I should not see "Trash" icon on the Irish actions
     When I follow "Japanese"
-    Then I should not see "Plus" icon on the example actions
-    And I should not see "Edit" icon on the ling property actions
-    And I should not see "Trash" icon on the ling property actions
+    Then I should not see "Plus" icon on the Adjective Noun example actions
+    And I should not see "Edit" icon on the Adjective Noun actions
+    And I should not see "Trash" icon on the Adjective Noun actions
+    And I should not see "Plus" icon on the Subject Object example actions
+    And I should not see "Edit" icon on the Subject Object actions
+    And I should not see "Trash" icon on the Subject Object actions
     And I should not see "Edit" icon on the edit menu
 
-  Scenario: A group admin can't add, delete, edit properties of Second Group
+  Scenario: A group admin can't edit all properties of Second Group
     When I go to the group Second Group
     Then I should not see "Plus" icon on the property settings
     When I follow "Properties"
     Then I should not see "Plus" icon on the property settings
-    And I should not see "Edit" icon on the table
-    And I should not see "Trash" icon on the table
+    And I should not see "Edit" icon on the Adjective Noun actions
+    And I should not see "Trash" icon on the Adjective Noun actions
+    And I should not see "Edit" icon on the Subject Object actions
+    And I should not see "Trash" icon on the Subject Object actions
+    And I should not see "Edit" icon on the Noun Adjective actions
+    And I should not see "Trash" icon on the Noun Adjective actions
+    And I should not see "Edit" icon on the Object Subject actions
+    And I should not see "Trash" icon on the Object Subject actions
 
-  Scenario: A group admin can't add, edit, delete a members of Second Group
+  Scenario: A group admin can't manage the membership of Second Group
     When I go to the group Second Group
     Then I should not see "Plus" icon on the membership settings
     When I follow "Members"
     And I follow "All"
     Then I should not see "Plus" icon on the membership settings
-    And I should not see "Edit" icon on the membership actions
-    And I should not see "Trash" icon on the membership actions
+    And I should not see "Edit" icon on the member2 actions
+    And I should not see "Trash" icon on the member2 actions

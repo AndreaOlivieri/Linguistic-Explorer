@@ -5,7 +5,8 @@ module RegistrationHelper
   end
 
   def sign_up(email, password, group=nil, level=nil, role=nil)
-    @user = User.find_by_email(email) || create_user(:email => email, :password => password)
+    user_name = email.split("@").first
+    @user = User.find_by_email(email) || create_user(:email => email, :password => password, :name => user_name)
     if group.present?
       @group = Group.find_by_name(group) || FactoryGirl.create(:group, :name => group)
       if level.present?

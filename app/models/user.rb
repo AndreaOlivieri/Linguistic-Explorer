@@ -70,6 +70,20 @@ class User < ActiveRecord::Base
 
   end
 
+  def is_expert_to_perform?(resource, action)
+    return true if admin?
+    ling, group = get_ling_and_group resource
+    return true if self.group_admin_of?(group)
+
+    # resource_ids_for_role :resource_expert, resource
+    if ling && member_of?(group) && is_expert?(group)
+
+      # is thruthy if either is assigned to that resource
+      return group.membership_for(self).has_role?(:expert, ling) || action == :create
+    end
+
+  end
+
   def is_expert?(group)
     group.membership_for(self).try(:is_expert?)
   end
